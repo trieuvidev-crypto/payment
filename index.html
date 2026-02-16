@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dori Payment - Thanh toán nhanh chóng & an toàn</title>
+    <meta name="description" content="Hệ thống thanh toán VietQR nhanh chóng, an toàn và tiện lợi">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="assets/logo.png">
+    
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Background Elements -->
+    <div class="bg-gradient"></div>
+    <div class="bg-pattern"></div>
+    
+    <!-- Theme Toggle -->
+    <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+        <svg class="sun-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="5"></circle>
+            <line x1="12" y1="1" x2="12" y2="3"></line>
+            <line x1="12" y1="21" x2="12" y2="23"></line>
+            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+            <line x1="1" y1="12" x2="3" y2="12"></line>
+            <line x1="21" y1="12" x2="23" y2="12"></line>
+            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+        </svg>
+        <svg class="moon-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+        </svg>
+    </button>
+
+    <div class="container">
+        <!-- Header -->
+        <header class="header fade-in">
+            <div class="logo-wrapper">
+                <img src="https://i.ibb.co/2YYHm5nH/bc2adf149b70434880aa67767993861e-0.jpg" alt="Dori Payment Logo" class="logo" id="logo">
+            </div>
+            <h1 class="site-title">Dori Payment</h1>
+            <p class="site-subtitle">Thanh toán nhanh chóng, an toàn & tiện lợi</p>
+        </header>
+
+        <!-- QR Payment Section -->
+        <section class="qr-section glass-card fade-in">
+            <h2 class="section-title">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <rect x="3" y="3" width="7" height="7"></rect>
+                    <rect x="14" y="3" width="7" height="7"></rect>
+                    <rect x="14" y="14" width="7" height="7"></rect>
+                    <rect x="3" y="14" width="7" height="7"></rect>
+                </svg>
+                Quét mã QR để thanh toán
+            </h2>
+            
+            <div class="qr-wrapper">
+                <div class="qr-glow"></div>
+                <div class="qr-container">
+                    <img id="qrCode" alt="QR Code thanh toán" class="qr-image">
+                    <div class="qr-skeleton" id="qrSkeleton">
+                        <div class="skeleton-pulse"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="payment-info">
+                <div class="info-row">
+                    <span class="info-label">Ngân hàng:</span>
+                    <span class="info-value" id="bankName">AGRIBANK</span>
+                </div>
+                <div class="info-row">
+                    <span class="info-label">Số tài khoản:</span>
+                    <span class="info-value" id="accountNumber">7400215025420</span>
+                </div>
+                <div class="info-row">
+                    <span class="info-label">Chủ tài khoản:</span>
+                    <span class="info-value" id="accountName">NGUYEN THANH SANG</span>
+                </div>
+                <div class="info-row">
+                    <span class="info-label">Nội dung:</span>
+                    <span class="info-value transfer-content" id="transferContent">-</span>
+                </div>
+            </div>
+
+            <div class="button-group">
+                <button class="btn btn-primary" id="copyAccountBtn">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                        <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                    </svg>
+                    <span>Copy STK</span>
+                    <div class="btn-ripple"></div>
+                </button>
+                <button class="btn btn-secondary" id="openBankAppBtn">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+                        <polyline points="9 22 9 12 15 12 15 22"></polyline>
+                    </svg>
+                    <span>Mở app ngân hàng</span>
+                    <div class="btn-ripple"></div>
+                </button>
+            </div>
+        </section>
+
+        <!-- Bank Selection -->
+        <section class="bank-section glass-card fade-in">
+            <h2 class="section-title">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect>
+                    <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path>
+                </svg>
+                Chọn ngân hàng của bạn
+            </h2>
+            <div class="bank-grid" id="bankGrid">
+                <!-- Banks will be populated by JavaScript -->
+            </div>
+        </section>
+
+        <!-- Step-by-step Guide -->
+        <section class="guide-section glass-card fade-in">
+            <h2 class="section-title highlight">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <path d="M12 16v-4"></path>
+                    <path d="M12 8h.01"></path>
+                </svg>
+                Hướng dẫn thanh toán
+            </h2>
+            
+            <div class="steps-container">
+                <div class="step-item">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <h3 class="step-title">Mở app ngân hàng</h3>
+                        <p class="step-desc">Mở ứng dụng ngân hàng của bạn trên điện thoại</p>
+                    </div>
+                </div>
+
+                <div class="step-item">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <h3 class="step-title">Chọn quét QR</h3>
+                        <p class="step-desc">Tìm và chọn chức năng "Quét mã QR" hoặc "QR Pay"</p>
+                    </div>
+                </div>
+
+                <div class="step-item">
+                    <div class="step-number">3</div>
+                    <div class="step-content">
+                        <h3 class="step-title">Quét mã QR</h3>
+                        <p class="step-desc">Hướng camera vào mã QR phía trên để quét</p>
+                    </div>
+                </div>
+
+                <div class="step-item">
+                    <div class="step-number">4</div>
+                    <div class="step-content">
+                        <h3 class="step-title">Nhập số tiền</h3>
+                        <p class="step-desc">Kiểm tra thông tin → Nhập số tiền → Bấm chuyển khoản</p>
+                    </div>
+                </div>
+
+                <div class="step-item">
+                    <div class="step-number">5</div>
+                    <div class="step-content">
+                        <h3 class="step-title">Chụp màn hình</h3>
+                        <p class="step-desc">Sau khi chuyển xong, chụp lại màn hình giao dịch thành công</p>
+                    </div>
+                </div>
+
+                <div class="step-item">
+                    <div class="step-number">6</div>
+                    <div class="step-content">
+                        <h3 class="step-title">Gửi bill xác nhận</h3>
+                        <p class="step-desc">Quay lại website → Bấm nút Gửi Zalo hoặc WhatsApp bên dưới</p>
+                    </div>
+                </div>
+
+                <div class="step-item">
+                    <div class="step-number">7</div>
+                    <div class="step-content">
+                        <h3 class="step-title">Hoàn tất</h3>
+                        <p class="step-desc">Gửi ảnh chụp màn hình để chúng tôi xác nhận đơn hàng</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Bill Submission -->
+        <section class="bill-section glass-card fade-in">
+            <h2 class="section-title">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+                </svg>
+                Gửi bill sau khi chuyển khoản
+            </h2>
+            
+            <p class="bill-description">
+                Sau khi chuyển khoản thành công, vui lòng gửi ảnh bill cho chúng tôi qua:
+            </p>
+
+            <div class="button-group">
+                <button class="btn btn-zalo" id="sendZaloBtn">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M12 2C6.477 2 2 6.477 2 12c0 1.89.525 3.66 1.438 5.168L2.546 20.2A1 1 0 003.8 21.454l3.032-.892A9.958 9.958 0 0012 22c5.523 0 10-4.477 10-10S17.523 2 12 2zm3.5 13.5h-7a.5.5 0 010-1h7a.5.5 0 010 1zm0-3h-7a.5.5 0 010-1h7a.5.5 0 010 1zm0-3h-7a.5.5 0 010-1h7a.5.5 0 010 1z"/>
+                    </svg>
+                    <span>Gửi Zalo</span>
+                    <div class="btn-ripple"></div>
+                </button>
+                <button class="btn btn-whatsapp" id="sendWhatsAppBtn">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+                    </svg>
+                    <span>Gửi WhatsApp</span>
+                    <div class="btn-ripple"></div>
+                </button>
+            </div>
+
+            <div class="contact-info">
+                <div class="contact-item">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+                    </svg>
+                    <span>Zalo: <strong id="zaloNumber">0327002590</strong></span>
+                </div>
+                <div class="contact-item">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+                    </svg>
+                    <span>WhatsApp: <strong id="whatsappNumber">+84327002590</strong></span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer fade-in">
+            <p>© 2026 LUONG MINH TRIEU VI. Thanh toán an toàn & bảo mật.</p>
+            <p class="footer-note">Website được bảo vệ bởi công nghệ mã hóa SSL</p>
+        </footer>
+    </div>
+
+    <!-- Popup Notification -->
+    <div class="popup" id="popup">
+        <div class="popup-content">
+            <div class="popup-icon">
+                <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <polyline points="20 6 9 17 4 12"></polyline>
+                </svg>
+            </div>
+            <h3 class="popup-title" id="popupTitle">Thành công!</h3>
+            <p class="popup-message" id="popupMessage">Đã copy số tài khoản</p>
+        </div>
+    </div>
+
+    <!-- Loading Overlay -->
+    <div class="loading-overlay" id="loadingOverlay">
+        <div class="loading-spinner">
+            <div class="spinner"></div>
+            <p>Đang mở ứng dụng...</p>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
